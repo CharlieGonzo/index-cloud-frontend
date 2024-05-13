@@ -66,6 +66,7 @@
         margin-left: 10px;
         margin-top: 10px;
         margin-bottom: 5px;
+        margin-right: 10px;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -75,26 +76,17 @@
 </style>
 <div class="container">
     <button class="settings">Settings</button>
-    <h1 style="text-align: center;">Hello <br> Username!</h1>
-    <h2>0/10 decks</h2>
+    <h1 style="text-align: center;">Hello <br>{{user.decks[0].nameOfDeck}} </h1>
+    <h2>{{user.decks.length}}/10 decks</h2>
 
     <div class="deck_container">
-        <div class="card"></div>
-        <div class="card">
-            <h1>deck name</h1>
-            <h2>amount of cards</h2>
-            <button> go to deck</button>
-        </div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
+    <div class="card" *ngFor="let deck of userDecks">
+        <p *ngIf="edit">edit this card</p>
+        {{deck.nameOfDeck}}
+    </div>
     </div>
     <div class="button_group">
-            <button>Edit Decks</button>
+            <button (click)="changeEdit()">Edit Decks</button>
             <button>Add Deck</button>
     </div>
 </div>
