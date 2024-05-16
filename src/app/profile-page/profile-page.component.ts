@@ -12,13 +12,19 @@ import { User } from '../../User';
   styleUrl: './profile-page.component.css'
 })
 export class ProfilePageComponent {
-  user!: User;
+  user: any;
   edit:boolean = false;
 
   constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(params => {
-      if (params['user']) {
-        this.user = JSON.parse(params['user']);
+  }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      const userJson = params.get('user');
+      if (userJson !== null) {
+        this.user = JSON.parse(userJson);
+      } else {
+        // Handle the case where 'user' parameter is not found or is null
       }
     });
   }
@@ -27,10 +33,7 @@ export class ProfilePageComponent {
     return this.user.decks;
   }
 
-  getLength(){
-    const deck:CardDeck[] = this.user.decks;
-    return deck.length
-  }
+
 
   changeEdit(){
     this.edit = !this.edit;

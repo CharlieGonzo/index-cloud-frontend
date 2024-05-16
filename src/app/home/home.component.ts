@@ -3,19 +3,23 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router'; 
 import { ProfilePageComponent } from '../profile-page/profile-page.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { UserService } from '../user.service';
+import { User } from '../../User';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,HttpClientModule],
+  providers:[UserService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  username:String = "";
-  password:String = ""
-
-  constructor(private router: Router) {} // Inject Router
+  username:string = "";
+  password:string = ""
+  loggedInUser!:User;
+  constructor(private router: Router,private service: UserService) {} // Inject Router
 
   user = {
     id:1,
@@ -66,9 +70,20 @@ export class HomeComponent {
 
 
    login(){
-    if(this.username === "first" && this.password === "poop"){
-      this.router.navigate(['/Profile',{user: JSON.stringify(this.user)}]);
-    }
+   
+    this.service.login(this.username,this.password).subscribe(
+      response => {
+        console.log(response);
+        this.loggedInUser = response;
+        if(this.loggedInUser == null){
+          console.log("boo")
+        }else{
+          console.log(this.loggedInUser.username);
+          this.router.navigate(['/Profile', {user: JSON.stringify(this.loggedInUser)}] )
+        }
+      }
+    )
+    
    }
 
 
