@@ -95,13 +95,13 @@
         <h1>Register</h1>
         <div style="display: flex; flex-direction: column; text-align: left;">
         <label for="email">Email:</label>
-        <input type="text" placeholder="Email" name="email" id="email">
+         <input type="text" placeholder="Email" name="email" id="email" [(ngModel)]="username">
         </div>
         <div style="display: flex; flex-direction: column; text-align: left;">
         <label for="password">Password:</label>
-        <input type="password" placeholder="password" name="password" id="password">
+        <input type="password" placeholder="password" name="password" id="password" [(ngModel)]="password">
         </div>
-        <button>Login</button>
+        <button (click)="RegisterUser()">Login</button>
         <p>Have a account? <a href="/">login</a></p>
 
     </form>

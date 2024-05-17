@@ -24,6 +24,20 @@ export class UserService {
       );
   }
 
+  Register(username: string, password: string): Observable<User> {
+    const loginInfo = { username, password };
+    console.log(loginInfo.username);
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<User>(`http://localhost:5056/api/Users`, loginInfo, { headers })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
