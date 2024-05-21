@@ -1,0 +1,33 @@
+<style>
+     button{
+        background-color: #007bff; /* Button background color */
+        color: white; /* Button text color */
+        padding: 10px 20px; /* Adjust as needed */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input
+    {
+        margin-top: 5px;
+        box-shadow: 1px 2px 8px 0px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 1px 2px 8px 0px rgba(0,0,0,0.55);
+    -moz-box-shadow: 1px 2px 8px 0px rgba(0,0,0,0.55);
+        box-shadow: 10ex;
+        border-radius: 20px;
+        padding-top:5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        width:250px;
+        height: 40px;
+       background-color: rgba(216, 220, 210, 1);
+    }
+</style>
+
+<div style="display: flex; justify-content: space-evenly; align-items: center; text-align: center; flex-direction: column; height: 300px;">
+    <label for="DeckName"><h2>Deck name</h2></label>
+    <input type="text" id="DeckName" name="DeckName" placeholder="Enter deck name here" [ngModel]="DeckName">
+    <button>Add Deck</button>
+<div>

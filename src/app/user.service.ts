@@ -10,6 +10,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+
   login(username: string, password: string): Observable<any> {
     const loginInfo = { username, password };
     console.log(loginInfo.username);
@@ -22,7 +23,7 @@ export class UserService {
       .pipe(
         catchError(this.handleError)
       );
-  }
+    }
 
   Register(username: string, password: string): Observable<User> {
     const loginInfo = { username, password };
@@ -36,6 +37,22 @@ export class UserService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  updateUser(Id:number,user:User):boolean {
+    if(user == null){
+      return false;
+    }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+   this.http.put<User>(`http://localhost:5056/api/Users/` + Id,  { headers })
+      .pipe(
+        catchError(this.handleError),
+          );
+      return true;
+
   }
 
   

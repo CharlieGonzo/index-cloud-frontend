@@ -3,17 +3,20 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardDeck } from '../../CardDeck';
 import { User } from '../../User';
+import { AddDeckComponent } from '../add-deck/add-deck.component';
 
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,AddDeckComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.css'
 })
 export class ProfilePageComponent {
+
   user: any;
   edit:boolean = false;
+  add:boolean = false;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -38,6 +41,11 @@ export class ProfilePageComponent {
   changeEdit(){
     this.edit = !this.edit;
   }
+  addDeck() {
+  this.add = !this.add;
+  }
+
+  
 
 
 

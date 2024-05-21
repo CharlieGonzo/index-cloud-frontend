@@ -87,6 +87,8 @@
     </div>
     <div class="button_group">
             <button (click)="changeEdit()">Edit Decks</button>
-            <button>Add Deck</button>
+            <button (click)="addDeck()">Add Deck</button>
     </div>
+    
+    <app-add-deck *ngIf="add"></app-add-deck>
 </div>
