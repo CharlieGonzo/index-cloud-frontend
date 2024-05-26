@@ -39,6 +39,25 @@ export class UserService {
       );
   }
 
+  addDeckToUser(Id:number,name:string):any {
+    
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    
+   this.http.put<User>(`http://localhost:5056/api/Users/` + Id, name, { headers })
+      .pipe(
+        catchError(this.handleError),
+          );
+    
+      
+  }
+
+  setUpdateWork(update:boolean){
+    update = !update;
+  }
+
   updateUser(Id:number,user:User):boolean {
     if(user == null){
       return false;
